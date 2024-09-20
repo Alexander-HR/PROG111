@@ -1,23 +1,34 @@
+MaxInput = 10
+MinInput = 1
+Left = "l"
+Right = "r"
 grid = ["x","x","x","x","x","x","x","x","x","x"]
 
-position = 0 #to initiate the while loop
+def originalPos():
+    while True:
+        position = int(input(f"Position in [{MinInput}..{MaxInput}]"))
+        if MinInput <= position <= MaxInput:
+            return position -1
 
-while position <= 0 or position > 10:
-    position = int(input("Position in [1..10]"))
-
-move = "i" #to initiate the while loop
-
-while move != "q" and move != "Q":
-    grid[position - 1] = "o"
-
-    for i in range(10):
+def getInstructions():
+    for i in range(MaxInput):
         print(grid[i], end="")
     print("\nl: left \nr: right \nMove:")
-    move = input()
+    return input()
+def mover(fmove, fposition):
+        if fmove == Right and fposition < MaxInput - 1:
+            return fposition + 1
+        elif fmove == Left and fposition >= MinInput:
+            return fposition - 1
+        else:
+            return fposition
 
-    if move == "r" and position < 10:
-        grid[position - 1] = "x"
-        position += 1
-    elif move == "l" and position > 1:
-        grid[position - 1] = "x"
-        position -= 1
+
+position = originalPos()
+while True:
+    grid[position] = "o"
+    move = getInstructions()
+    position = mover(move,position)
+    grid = ["x","x","x","x","x","x","x","x","x","x"]
+    if move != Left and move != Right:
+        break
