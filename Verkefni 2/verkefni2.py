@@ -6,8 +6,7 @@ grid = ["x","x","x","x","x","x","x","x","x","x"]
 
 def originalPos():
     while True:
-        print(f"Position in [{MinInput}..{MaxInput}]:")
-        position = int(input())
+        position = int(input(f"Position in [{MinInput}..{MaxInput}]"))
         if MinInput <= position <= MaxInput:
             return position -1
 
