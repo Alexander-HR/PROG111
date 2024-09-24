@@ -1,21 +1,19 @@
 amount = int(input())
-myList = [str(input().split(" ",amount))]
 
-def starWarsOrder(flist,fnum):
-    
+myList = list(map(int, input().split()))
+
+def starWarsOrder(flist):
     flist.sort()
-    num = fnum // 3
+    third = len(flist) // 3
+    
+    first = flist[:third]
+    middle = flist[third:third*2]
+    last = flist[third*2:]
 
-    flist1 = flist[:num]
-    flist2 = flist[num:(num * 2)]
-    flist3 = flist[(num * 2):]
+    nList = middle + first + last
 
-    flist4 = flist2 + flist1 + flist3
+    return nList
 
-    return flist4
+newList = starWarsOrder(myList)
 
-newList = starWarsOrder(myList,amount)
-
-my_string = " ".join(newList)
-
-print(my_string)
+print(" ".join(map(str, newList)))
